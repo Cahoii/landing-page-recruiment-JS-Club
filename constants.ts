@@ -4,10 +4,10 @@ export const CLUB_INFO: ClubInfo = {
   name: "Japanese Software Engineer Club (JS-Club)",
   slogan: "Khơi nguồn đam mê, Dẫn lối thành công",
   description: "JS-Club là môi trường năng động dành cho sinh viên đam mê phát triển kỹ năng lãnh đạo, tổ chức sự kiện và kết nối cộng đồng. Chúng tôi tạo ra các sân chơi bổ ích để các bạn trẻ thử thách bản thân.",
-  history: "Được thành lập từ năm 2018, JS-Club đã tổ chức thành công hơn 50 sự kiện lớn nhỏ, thu hút hàng ngàn sinh viên tham gia.",
+  history: "Được thành lập từ năm 2014, JS-Club đã tổ chức thành công hơn 50 sự kiện lớn nhỏ, thu hút hàng ngàn sinh viên tham gia.",
   values: ["Sáng tạo", "Trách nhiệm", "Đoàn kết", "Tiên phong"],
   contactEmail: "tuyendung@flc.edu.vn",
-  foundedYear: 2018
+  foundedYear: 2014
 };
 export const DEPARTMENTS: Department[] = [
   {

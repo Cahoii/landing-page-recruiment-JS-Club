@@ -51,7 +51,7 @@ export const sendMessageToGemini = async (userMessage: string): Promise<string> 
 
   try {
     const response = await client.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-1.5-flash',
       contents: userMessage,
       config: {
         systemInstruction: constructSystemPrompt(),
