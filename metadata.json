@@ -1,0 +1,5 @@
+{
+  "name": "ClubRecruit AI",
+  "description": "A modern club recruitment website featuring comprehensive department descriptions and an integrated AI assistant powered by Gemini to answer applicant queries.",
+  "requestFramePermissions": []
+}
