@@ -29,12 +29,12 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-brand-500/30">
-                JS
-              </div>
+                <div className="w-16 h-16 md:w-15 md:h-15 rounded-full from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
+                  <img src="/access/img/logo.png" alt="JS-club Logo" className="w-full h-full object-cover rounded-full" />
+                </div>
               <div className={`flex flex-col transition-colors ${scrolled ? 'text-gray-900' : 'text-gray-900 md:text-white'}`}>
                 <span className="font-bold text-xl leading-none tracking-tight">JS-club</span>
-                <span className="text-[10px] opacity-80 font-bold tracking-[0.2em] uppercase">ClubRecruit</span>
+                <span className="text-[10px] opacity-80 font-bold tracking-[0.2em] uppercase">日本のエンジニア</span>
               </div>
             </div>
             
@@ -234,8 +234,8 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-1">
-              <div className="w-14 h-14 bg-brand-600 rounded-xl flex items-center justify-center text-white font-black text-2xl mb-6 shadow-lg shadow-brand-500/20">
-                JS
+              <div className="w-16 h-16 md:w-15 md:h-15 rounded-full from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
+                <img src="/access/img/logo.png" alt="JS-club Logo" className="w-full h-full object-cover rounded-full" />
               </div>
               <p className="text-gray-500 text-sm leading-relaxed mb-6">
                 Japanese Software Engineer Club. <br/> Since 2014.
