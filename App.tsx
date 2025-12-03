@@ -6,9 +6,38 @@ import AiChat from './components/AiChat';
 import { Department } from './types';
 import { ChevronRight, Facebook, Instagram, Mail, MapPin, Code2, Flower2, Calendar, Users, Award, ChevronDown } from 'lucide-react';
 
+const JsClubLogo = () => (
+  <div className="w-16 h-16 md:w-15 md:h-15 rounded-full from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
+    <img
+      src="/public/logo/logo.png"
+      alt="JS-club Logo"
+      className="w-full h-full object-cover rounded-full"
+    />
+  </div>
+
+);
+
+const HERO_IMAGES: string[] = [
+  "public/carousel/img1.jpg",
+  "public/carousel/img2.jpg",
+  "public/carousel/img3.jpg",
+  "public/carousel/img4.jpg",
+  "public/carousel/img5.jpg",
+  "public/carousel/img6.jpg",
+  "public/carousel/img7.jpg",
+  "public/carousel/img8.jpg",
+  "public/carousel/img9.jpg",
+  "public/carousel/img10.jpg",
+  "public/carousel/img11.jpg",
+  "public/carousel/img12.jpg",
+  "public/carousel/img13.jpg",
+  "public/carousel/img14.jpg",
+];
+
 const App: React.FC = () => {
   const [selectedDept, setSelectedDept] = useState<Department | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +45,14 @@ const App: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Carousel Logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000); // Change image every 5 seconds
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -27,22 +64,22 @@ const App: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center gap-3">
-                <div className="w-16 h-16 md:w-15 md:h-15 rounded-full from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
-                  <img src="/access/img/logo.png" alt="JS-club Logo" className="w-full h-full object-cover rounded-full" />
-                </div>
-              <div className={`flex flex-col transition-colors ${scrolled ? 'text-gray-900' : 'text-gray-900 md:text-white'}`}>
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center gap-2 group cursor-pointer">
+              <div className="transition-transform duration-300 group-hover:scale-105">
+                <JsClubLogo />
+              </div>
+              <div className={`flex flex-col transition-colors ${scrolled ? 'text-gray-900' : 'text-white drop-shadow-md'}`}>
                 <span className="font-bold text-xl leading-none tracking-tight">JS-club</span>
-                <span className="text-[10px] opacity-80 font-bold tracking-[0.2em] uppercase">日本のエンジニア</span>
+                <span className="text-[10px] opacity-90 font-bold tracking-[0.2em] uppercase">ClubRecruit</span>
               </div>
             </div>
             
-            <div className={`hidden md:flex items-center space-x-8 text-sm font-bold tracking-wide transition-colors ${scrolled ? 'text-gray-600' : 'text-white/90'}`}>
-              <a href="#about" className="hover:text-brand-500 transition-colors">VỀ CHÚNG TÔI</a>
-              <a href="#departments" className="hover:text-brand-500 transition-colors">CÁC BAN</a>
-              <a href="#contact" className="hover:text-brand-500 transition-colors">LIÊN HỆ</a>
-              <a href="#apply" className="px-6 py-2.5 bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-all shadow-lg hover:shadow-brand-500/40 transform hover:-translate-y-0.5">
+            <div className={`hidden md:flex items-center space-x-8 text-sm font-bold tracking-wide transition-colors ${scrolled ? 'text-gray-600' : 'text-white'}`}>
+              <a href="#about" className="hover:text-brand-500 transition-colors drop-shadow-sm">VỀ CHÚNG TÔI</a>
+              <a href="#departments" className="hover:text-brand-500 transition-colors drop-shadow-sm">CÁC BAN</a>
+              <a href="#contact" className="hover:text-brand-500 transition-colors drop-shadow-sm">LIÊN HỆ</a>
+              <a href="#apply" className="px-6 py-2.5 bg-brand-600 text-white rounded-full hover:bg-brand-700 transition-all shadow-lg hover:shadow-brand-500/40 transform hover:-translate-y-0.5 border border-brand-500">
                 ỨNG TUYỂN NGAY
               </a>
             </div>
@@ -50,41 +87,67 @@ const App: React.FC = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background */}
+      {/* Hero Section with Carousel */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gray-900">
+        {/* Background Carousel */}
+        {HERO_IMAGES.map((img, index) => (
+          <div 
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentHeroIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img 
+              src={img}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+            {/* Dark Overlay for readability */}
+            <div className="absolute inset-0 bg-gray-900/60 mix-blend-multiply"></div>
+          </div>
+        ))}
+
+        {/* Static Gradients over carousel */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-            alt="Japan Background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/60 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-90"></div>
+          <div className="absolute inset-0 bg-brand-900/10 mix-blend-overlay"></div>
+        </div>
+
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {HERO_IMAGES.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentHeroIndex(idx)}
+              className={`w-12 h-1 rounded-full transition-all duration-300 ${
+                idx === currentHeroIndex ? 'bg-brand-500' : 'bg-white/30 hover:bg-white/50'
+              }`}
+            />
+          ))}
         </div>
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 w-full flex flex-col md:flex-row items-center pt-20">
           <div className="md:w-3/5 text-center md:text-left space-y-8 animate-fade-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold shadow-lg">
-              <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-              Tuyển thành viên Gen 14
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600/20 backdrop-blur-md border border-brand-500/30 text-white text-sm font-bold shadow-lg ring-1 ring-brand-500/50">
+              <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse shadow-[0_0_10px_#f43f5e]"></span>
+              Tuyển thành viên Gen 10
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-[0.85] tracking-tighter drop-shadow-2xl">
               CODE YOUR <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-600">FUTURE</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-500 to-brand-600 filter drop-shadow-lg">FUTURE</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-gray-200 font-medium max-w-xl mx-auto md:mx-0 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-100 font-medium max-w-xl mx-auto md:mx-0 leading-relaxed drop-shadow-md">
               {CLUB_INFO.description} Nơi hội tụ của những kỹ sư phần mềm tài năng với tinh thần kỷ luật Nhật Bản.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-              <a href="#departments" className="px-8 py-4 bg-brand-600 text-white rounded-xl font-bold text-lg hover:bg-brand-700 transition-all shadow-xl hover:shadow-brand-500/40 transform hover:-translate-y-1 flex items-center justify-center gap-2">
+              <a href="#departments" className="px-8 py-4 bg-brand-600 text-white rounded-xl font-bold text-lg hover:bg-brand-700 transition-all shadow-xl hover:shadow-brand-500/40 transform hover:-translate-y-1 flex items-center justify-center gap-2 border border-brand-500">
                 Khám phá các Ban <ChevronRight className="w-5 h-5" />
               </a>
-              <a href="#about" className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/20 transition-all flex items-center justify-center">
+              <a href="#about" className="px-8 py-4 bg-white/5 backdrop-blur-md text-white border border-white/20 rounded-xl font-bold text-lg hover:bg-white/10 transition-all flex items-center justify-center shadow-lg">
                 Tìm hiểu thêm
               </a>
             </div>
@@ -92,14 +155,14 @@ const App: React.FC = () => {
 
           {/* Decorative Right Side */}
           <div className="md:w-2/5 hidden md:block relative h-full">
-            <div className="absolute -right-20 top-1/2 -translate-y-1/2 text-[12rem] font-black text-white/5 writing-vertical-rl pointer-events-none select-none" style={{ writingMode: 'vertical-rl' }}>
+            <div className="absolute -right-20 top-1/2 -translate-y-1/2 text-[10rem] font-black text-white/5 writing-vertical-rl pointer-events-none select-none mix-blend-overlay" style={{ writingMode: 'vertical-rl' }}>
               エンジニア
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 animate-bounce z-20">
           <ChevronDown className="w-8 h-8" />
         </div>
       </section>
@@ -122,12 +185,8 @@ const App: React.FC = () => {
         ))}
       </div>
 
-      {/* About Section */}
-      <section id="about" className="py-24 relative overflow-hidden">
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 opacity-5">
-           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Seigaiha.svg/1200px-Seigaiha.svg.png" className="w-[500px]" alt="Pattern" />
-        </div>
-        
+      {/* About Section with Tech Grid Background */}
+      <section id="about" className="py-24 relative overflow-hidden tech-grid-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <span className="text-brand-600 font-bold tracking-widest text-sm uppercase block mb-3">Về chúng tôi</span>
@@ -216,7 +275,7 @@ const App: React.FC = () => {
               </p>
               <div className="inline-flex items-center gap-2 text-white/80 bg-brand-700/50 px-4 py-2 rounded-lg backdrop-blur-sm">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                Đang mở đơn tuyển thành viên Gen 14
+                Đang mở đơn tuyển thành viên Gen 10
               </div>
             </div>
 
@@ -234,8 +293,9 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-1">
-              <div className="w-16 h-16 md:w-15 md:h-15 rounded-full from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
-                <img src="/access/img/logo.png" alt="JS-club Logo" className="w-full h-full object-cover rounded-full" />
+              {/* Footer Logo */}
+              <div className="mb-6">
+                <JsClubLogo />
               </div>
               <p className="text-gray-500 text-sm leading-relaxed mb-6">
                 Japanese Software Engineer Club. <br/> Since 2014.
@@ -265,7 +325,7 @@ const App: React.FC = () => {
                  </li>
                  <li className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-brand-600 mt-1" />
-                    Hoa Lac Hi-tech Park, km 29, Đại lộ, Thăng Long, Hà Nội
+                    Đại học Công Nghệ - ĐHQGHN
                  </li>
                </ul>
             </div>
