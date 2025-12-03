@@ -1,10 +1,10 @@
 import { ClubInfo, Department } from './types';
 
 export const CLUB_INFO: ClubInfo = {
-  name: "JS-club",
+  name: "JS-Club",
   slogan: "一期一会 - Nhất kỳ nhất hội",
-  description: "JS-club là ngôi nhà chung cho các bạn sinh viên đam mê Công nghệ thông tin và văn hóa Nhật Bản. Chúng tôi đào tạo kỹ sư cầu nối (BrSE) tương lai, kết hợp giữa tư duy lập trình sắc bén và tinh thần kỷ luật Nhật Bản.",
-  history: "Thành lập năm 2014, JS-club đã đào tạo hàng trăm kỹ sư chất lượng cao, hiện đang làm việc tại các công ty công nghệ lớn của Nhật Bản và Việt Nam.",
+  description: "description",
+  history: "Thành lập năm 2014, JS-Club đã đào tạo hàng trăm kỹ sư chất lượng cao, hiện đang làm việc tại các công ty công nghệ lớn của Nhật Bản và Việt Nam.",
   values: ["Kỷ Luật", "Sáng Tạo", "Chia Sẻ", "Chuyên Nghiệp"],
   contactEmail: "jsclub.fpt@gmail.com",
   foundedYear: 2014
@@ -62,7 +62,7 @@ export const DEPARTMENTS: Department[] = [
   {
     id: "truyen-thong",
     name: "Ban Truyền Thông",
-    description: "Gương mặt đại diện, mang hình ảnh JS-club vươn xa.",
+    description: "Gương mặt đại diện, mang hình ảnh JS-Club vươn xa.",
     imageUrl: "https://images.unsplash.com/photo-1515168816837-397c96d546d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     tasks: [
       "Chụp ảnh, quay phim tại các sự kiện (Photographer/Cameraman).",

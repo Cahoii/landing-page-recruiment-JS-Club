@@ -150,7 +150,7 @@ const AiChat: React.FC = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyPress}
-            placeholder="Hỏi AI về JS-club..."
+            placeholder="Hỏi AI về JS-Club..."
             className="flex-1 bg-transparent border-none outline-none text-sm text-gray-700 placeholder-gray-400"
             disabled={loading}
           />

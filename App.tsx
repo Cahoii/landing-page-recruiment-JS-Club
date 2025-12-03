@@ -9,28 +9,28 @@ import { ChevronRight, Facebook, Instagram, Mail, MapPin, Code2, Flower2, Calend
 const JsClubLogo = () => (
   <div className="w-16 h-16 md:w-15 md:h-15 rounded-full from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
     <img
-      src="/public/logo/logo.png"
-      alt="JS-club Logo"
+      src="/logo/logo.png"
+      alt="JS-Club Logo"
       className="w-full h-full object-cover rounded-full"
     />
   </div>
 );
 
 const HERO_IMAGES: string[] = [
-  "public/carousel/1.jpg",
-  "public/carousel/2.jpg",
-  "public/carousel/3.jpg",
-  "public/carousel/4.jpg",
-  "public/carousel/5.jpg",
-  "public/carousel/6.jpg",
-  "public/carousel/7.jpg",
-  "public/carousel/8.jpg",
-  "public/carousel/9.jpg",
-  "public/carousel/10.jpg",
-  "public/carousel/11.jpg",
-  "public/carousel/12.jpg",
-  "public/carousel/13.jpg",
-  "public/carousel/14.jpg",
+  "/carousel/1.jpg",
+  "/carousel/2.jpg",
+  "/carousel/3.jpg",
+  "/carousel/4.jpg",
+  "/carousel/5.jpg",
+  "/carousel/6.jpg",
+  "/carousel/7.jpg",
+  "/carousel/8.jpg",
+  "/carousel/9.jpg",
+  "/carousel/10.jpg",
+  "/carousel/11.jpg",
+  "/carousel/12.jpg",
+  "/carousel/13.jpg",
+  "/carousel/14.jpg",
 ];
 
 const App: React.FC = () => {
@@ -69,7 +69,7 @@ const App: React.FC = () => {
                 <JsClubLogo />
               </div>
               <div className={`flex flex-col transition-colors ${scrolled ? 'text-gray-900' : 'text-white drop-shadow-md'}`}>
-                <span className="font-bold text-xl leading-none tracking-tight">JS-club</span>
+                <span className="font-bold text-xl leading-none tracking-tight">JS-Club</span>
                 <span className="text-[10px] opacity-90 font-bold tracking-[0.2em] uppercase">日本のエンジニア</span>
               </div>
             </div>
@@ -134,12 +134,12 @@ const App: React.FC = () => {
             </div>
             
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-[0.85] tracking-tighter drop-shadow-2xl">
-              CODE YOUR <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-500 to-brand-600 filter drop-shadow-lg">FUTURE</span>
+              Slogan <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-500 to-brand-600 filter drop-shadow-lg">here</span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-100 font-medium max-w-xl mx-auto md:mx-0 leading-relaxed drop-shadow-md">
-              {CLUB_INFO.description} Nơi hội tụ của những kỹ sư phần mềm tài năng với tinh thần kỷ luật Nhật Bản.
+              {CLUB_INFO.description}
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
@@ -342,7 +342,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>&copy; 2025 JS-club. All rights reserved.</p>
+            <p>&copy; 2025 JS-Club. All rights reserved.</p>
             <div className="flex items-center gap-1 mt-2 md:mt-0">
                Made with <span className="text-brand-600">♥</span> and <Code2 className="w-4 h-4 text-brand-600" />
             </div>
