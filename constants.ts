@@ -1,85 +1,94 @@
 import { ClubInfo, Department } from './types';
 
 export const CLUB_INFO: ClubInfo = {
-  name: "Japanese Software Engineer Club (JS-Club)",
-  slogan: "Khơi nguồn đam mê, Dẫn lối thành công",
-  description: "JS-Club là môi trường năng động dành cho sinh viên đam mê phát triển kỹ năng lãnh đạo, tổ chức sự kiện và kết nối cộng đồng. Chúng tôi tạo ra các sân chơi bổ ích để các bạn trẻ thử thách bản thân.",
-  history: "Được thành lập từ năm 2014, JS-Club đã tổ chức thành công hơn 50 sự kiện lớn nhỏ, thu hút hàng ngàn sinh viên tham gia.",
-  values: ["Sáng tạo", "Trách nhiệm", "Đoàn kết", "Tiên phong"],
-  contactEmail: "tuyendung@flc.edu.vn",
+  name: "JS-club",
+  slogan: "一期一会 - Nhất kỳ nhất hội",
+  description: "JS-club là ngôi nhà chung cho các bạn sinh viên đam mê Công nghệ thông tin và văn hóa Nhật Bản. Chúng tôi đào tạo kỹ sư cầu nối (BrSE) tương lai, kết hợp giữa tư duy lập trình sắc bén và tinh thần kỷ luật Nhật Bản.",
+  history: "Thành lập năm 2014, JS-club đã đào tạo hàng trăm kỹ sư chất lượng cao, hiện đang làm việc tại các công ty công nghệ lớn của Nhật Bản và Việt Nam.",
+  values: ["Kỷ Luật", "Sáng Tạo", "Chia Sẻ", "Chuyên Nghiệp"],
+  contactEmail: "jsclub.fpt@gmail.com",
   foundedYear: 2014
 };
+
 export const DEPARTMENTS: Department[] = [
   {
     id: "chuyen-mon",
     name: "Ban Chuyên Môn",
-    description: "Phát triển năng lực chuyên môn cho thành viên thông qua workshop, dự án thực hành và mentoring.",
-    iconName: "Code",
+    description: "Linh hồn công nghệ của CLB, nơi đào tạo các 'chiến thần' code và tiếng Nhật.",
+    imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     tasks: [
-      "Tổ chức workshop, tech talk và buổi training nội bộ.",
-      "Thiết kế và triển khai dự án mẫu, bài tập thực hành.",
-      "Hỗ trợ code review, mentoring cho các thành viên mới.",
-      "Xây dựng tài liệu học tập, chuẩn hóa quy trình kỹ thuật."
+      "Tổ chức các lớp học Lập trình (Web, AI, Mobile) và Tiếng Nhật chuyên ngành.",
+      "Xây dựng các dự án phần mềm thực tế (Outsourcing & Product).",
+      "Nghiên cứu công nghệ mới và chia sẻ kiến thức (Seminar)."
     ],
     requirements: [
-      "Có nền tảng lập trình cơ bản (ưu tiên JavaScript/TypeScript).",
-      "Ham học hỏi, chịu khó nghiên cứu và truyền đạt.",
-      "Kỹ năng làm việc nhóm và giải quyết vấn đề.",
-      "Tinh thần trách nhiệm khi đảm nhận nhiệm vụ."
+      "Có tư duy logic tốt, đam mê công nghệ.",
+      "Có kiến thức nền tảng về C++, Java, Python hoặc JS.",
+      "Ưu tiên ứng viên có định hướng trở thành BrSE."
     ]
   },
   {
     id: "van-hoa",
     name: "Ban Văn Hóa",
-    description: "Duy trì văn hóa CLB, tổ chức hoạt động gắn kết và phát triển cộng đồng thân thiện, tích cực.",
-    iconName: "Users",
+    description: "Nơi gìn giữ và lan tỏa bản sắc văn hóa Nhật Bản cũng như tinh thần JS.",
+    imageUrl: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     tasks: [
-      "Tổ chức các hoạt động bonding, team building và sự kiện nội bộ.",
-      "Quản lý chương trình chào đón, onboarding thành viên mới.",
-      "Xây dựng quy tắc ứng xử, truyền thông nội bộ và duy trì tinh thần đội nhóm.",
-      "Hỗ trợ tổ chức các dịp lễ, kỷ niệm của CLB."
+      "Tổ chức các lễ hội văn hóa Nhật Bản (Oshougatsu, Tanabata...).",
+      "Tổ chức teambuilding, bonding gắn kết thành viên.",
+      "Chuẩn bị các tiết mục văn nghệ (hát, nhảy Yosakoi)."
     ],
     requirements: [
-      "Kỹ năng giao tiếp tốt, thân thiện và tận tâm.",
-      "Khả năng tổ chức sự kiện, lên kế hoạch và phối hợp.",
-      "Nhạy cảm văn hóa, biết lắng nghe và xử lý mâu thuẫn.",
-      "Sáng tạo trong ý tưởng gắn kết thành viên."
+      "Yêu thích văn hóa Nhật Bản.",
+      "Năng động, hòa đồng, có khiếu văn nghệ là lợi thế.",
+      "Khéo tay, tỉ mỉ (làm đồ handmade, trang trí)."
     ]
   },
   {
-    id: "doi-ngoai",
-    name: "Ban Đối Ngoại",
-    description: "Xây dựng mối quan hệ với doanh nghiệp, nhà tài trợ và các đối tác nhằm hỗ trợ hoạt động CLB.",
-    iconName: "Handshake",
+    id: "noi-dung",
+    name: "Ban Nội Dung",
+    description: "Bộ não sáng tạo, người thổi hồn vào từng bài viết và sự kiện.",
+    imageUrl: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     tasks: [
-      "Tìm kiếm, tiếp cận và đàm phán với nhà tài trợ, đối tác.",
-      "Chuẩn bị hồ sơ, proposal và báo cáo tài trợ.",
-      "Thiết lập hợp tác với các CLB, tổ chức khác và đơn vị truyền thông.",
-      "Hỗ trợ công tác hậu cần khi có đối tác tham gia sự kiện."
+      "Lên ý tưởng (idea) và viết kịch bản cho các sự kiện.",
+      "Sáng tạo nội dung (Content) cho Fanpage, TikTok.",
+      "Biên tập tài liệu truyền thông nội bộ."
     ],
     requirements: [
-      "Tự tin giao tiếp, có kỹ năng đàm phán và thuyết phục.",
-      "Kỹ năng viết email/chào hàng chuyên nghiệp.",
-      "Tinh thần chủ động, chịu được áp lực khi cần.",
-      "Có mối quan hệ hoặc kinh nghiệm liên hệ đối tác là lợi thế."
+      "Khả năng viết lách tốt, ngôn từ phong phú.",
+      "Có tư duy sáng tạo, bắt trend nhanh.",
+      "Thích kể chuyện (Storytelling)."
     ]
   },
   {
     id: "truyen-thong",
     name: "Ban Truyền Thông",
-    description: "Quản lý hình ảnh và thông điệp CLB trên kênh truyền thông; sáng tạo nội dung và sản xuất media.",
-    iconName: "Camera",
+    description: "Gương mặt đại diện, mang hình ảnh JS-club vươn xa.",
+    imageUrl: "https://images.unsplash.com/photo-1515168816837-397c96d546d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     tasks: [
-      "Lên kế hoạch nội dung và đăng bài trên Fanpage, Group, Instagram...",
-      "Thiết kế poster, banner; quay, dựng và biên tập video sự kiện.",
-      "Chụp ảnh sự kiện, quản lý kho hình ảnh và nhãn hiệu CLB.",
-      "Theo dõi hiệu quả truyền thông và tối ưu nội dung."
+      "Chụp ảnh, quay phim tại các sự kiện (Photographer/Cameraman).",
+      "Thiết kế ấn phẩm đồ họa (Design) 2D/3D.",
+      "Dựng video (Video Editor) highlight sự kiện."
     ],
     requirements: [
-      "Kỹ năng viết content, thiết kế cơ bản (Ps, Ai) hoặc dựng video (Pr, CapCut).",
-      "Gu thẩm mỹ, sáng tạo và nắm bắt xu hướng mạng xã hội.",
-      "Cẩn thận, đúng deadline và khả năng làm việc độc lập.",
-      "Kinh nghiệm quản lý mạng xã hội là một plus."
+      "Biết sử dụng Adobe Suite (Ps, Ai, Pr) hoặc Canva/Capcut.",
+      "Có gu thẩm mỹ tốt.",
+      "Chịu khó, sẵn sàng tác nghiệp mọi lúc mọi nơi."
+    ]
+  },
+  {
+    id: "doi-ngoai",
+    name: "Ban Đối Ngoại",
+    description: "Cầu nối vững chắc giữa CLB với doanh nghiệp và các tổ chức khác.",
+    imageUrl: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    tasks: [
+      "Tìm kiếm và đàm phán với Nhà tài trợ (Sponsorship).",
+      "Mời diễn giả (Guest Speaker) cho các buổi Talkshow.",
+      "Giữ liên lạc với các cựu thành viên (Alumni)."
+    ],
+    requirements: [
+      "Giao tiếp tự tin, khéo léo.",
+      "Có khả năng đàm phán, thuyết phục.",
+      "Tiếng Anh hoặc Tiếng Nhật giao tiếp là lợi thế lớn."
     ]
   }
 ];

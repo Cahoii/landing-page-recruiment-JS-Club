@@ -2,7 +2,7 @@ export interface Department {
   id: string;
   name: string;
   description: string;
-  iconName: string; // We will map this to Lucide icons
+  imageUrl: string; // URL ảnh của trưởng ban hoặc ảnh đại diện ban
   tasks: string[];
   requirements: string[];
 }

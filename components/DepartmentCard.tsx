@@ -1,64 +1,53 @@
 import React from 'react';
 import { Department } from '../types';
-import { PenTool, Camera, Users, Handshake, CheckCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface DepartmentCardProps {
   dept: Department;
+  onClick: (dept: Department) => void;
 }
 
-const iconMap: Record<string, React.ReactNode> = {
-  'PenTool': <PenTool className="w-8 h-8" />,
-  'Camera': <Camera className="w-8 h-8" />,
-  'Users': <Users className="w-8 h-8" />,
-  'Handshake': <Handshake className="w-8 h-8" />,
-};
-
-const DepartmentCard: React.FC<DepartmentCardProps> = ({ dept }) => {
+const DepartmentCard: React.FC<DepartmentCardProps> = ({ dept, onClick }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 flex flex-col h-full">
-      <div className="p-6 bg-brand-50 border-b border-brand-100 flex items-center gap-4">
-        <div className="p-3 bg-brand-600 text-white rounded-lg shadow-md">
-          {iconMap[dept.iconName] || <Users />}
-        </div>
-        <h3 className="text-xl font-bold text-gray-800">{dept.name}</h3>
+    <div 
+      onClick={() => onClick(dept)}
+      className="group relative h-[480px] w-full rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-gray-900"
+    >
+      {/* Background Image with Zoom Effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+        style={{ backgroundImage: `url(${dept.imageUrl})` }}
+      />
+
+      {/* Modern Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+
+      {/* Decorative Number/Id */}
+      <div className="absolute top-6 right-6 font-black text-6xl text-white/5 font-sans pointer-events-none select-none">
+        {dept.id.slice(0, 2).toUpperCase()}
       </div>
-      
-      <div className="p-6 flex-grow flex flex-col gap-4">
-        <p className="text-gray-600 italic">{dept.description}</p>
-        
-        <div>
-          <h4 className="font-semibold text-brand-700 mb-2 flex items-center gap-2">
-            Công việc chính
-          </h4>
-          <ul className="space-y-2">
-            {dept.tasks.map((task, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
-                <span className="mt-1 text-brand-500 shrink-0">•</span>
-                <span>{task}</span>
-              </li>
-            ))}
-          </ul>
+
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col justify-end p-8">
+        <div className="transform transition-transform duration-500 group-hover:-translate-y-4">
+          <div className="w-12 h-1 bg-brand-500 mb-4 rounded-full origin-left transition-all duration-500 group-hover:w-20" />
+          
+          <h3 className="text-3xl font-bold text-white mb-3 leading-tight tracking-tight">
+            {dept.name}
+          </h3>
+          
+          <p className="text-gray-200 text-sm md:text-base line-clamp-2 opacity-90 mb-4 font-light leading-relaxed">
+            {dept.description}
+          </p>
         </div>
 
-        <div>
-          <h4 className="font-semibold text-brand-700 mb-2 flex items-center gap-2">
-            Yêu cầu
-          </h4>
-          <ul className="space-y-2">
-            {dept.requirements.map((req, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
-                <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                <span>{req}</span>
-              </li>
-            ))}
-          </ul>
+        {/* Button appears on hover */}
+        <div className="flex items-center text-white font-bold text-sm tracking-wider uppercase opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+          <span className="bg-brand-600 px-4 py-2 rounded-full flex items-center gap-2 group-hover:bg-brand-500 transition-colors">
+            Khám phá <ArrowRight className="w-4 h-4" />
+          </span>
         </div>
-      </div>
-      
-      <div className="p-4 bg-gray-50 border-t border-gray-100 text-center">
-        <button className="text-brand-600 font-semibold hover:text-brand-800 text-sm uppercase tracking-wider transition-colors">
-          Ứng tuyển ngay &rarr;
-        </button>
       </div>
     </div>
   );
