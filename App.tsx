@@ -14,24 +14,23 @@ const JsClubLogo = () => (
       className="w-full h-full object-cover rounded-full"
     />
   </div>
-
 );
 
 const HERO_IMAGES: string[] = [
-  "public/carousel/img1.jpg",
-  "public/carousel/img2.jpg",
-  "public/carousel/img3.jpg",
-  "public/carousel/img4.jpg",
-  "public/carousel/img5.jpg",
-  "public/carousel/img6.jpg",
-  "public/carousel/img7.jpg",
-  "public/carousel/img8.jpg",
-  "public/carousel/img9.jpg",
-  "public/carousel/img10.jpg",
-  "public/carousel/img11.jpg",
-  "public/carousel/img12.jpg",
-  "public/carousel/img13.jpg",
-  "public/carousel/img14.jpg",
+  "public/carousel/1.jpg",
+  "public/carousel/2.jpg",
+  "public/carousel/3.jpg",
+  "public/carousel/4.jpg",
+  "public/carousel/5.jpg",
+  "public/carousel/6.jpg",
+  "public/carousel/7.jpg",
+  "public/carousel/8.jpg",
+  "public/carousel/9.jpg",
+  "public/carousel/10.jpg",
+  "public/carousel/11.jpg",
+  "public/carousel/12.jpg",
+  "public/carousel/13.jpg",
+  "public/carousel/14.jpg",
 ];
 
 const App: React.FC = () => {
@@ -56,7 +55,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 font-sans selection:bg-brand-500 selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white text-gray-800 font-sans selection:bg-brand-500 selection:text-white overflow-x-hidden">
       {/* Navigation */}
       <nav 
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -71,7 +70,7 @@ const App: React.FC = () => {
               </div>
               <div className={`flex flex-col transition-colors ${scrolled ? 'text-gray-900' : 'text-white drop-shadow-md'}`}>
                 <span className="font-bold text-xl leading-none tracking-tight">JS-club</span>
-                <span className="text-[10px] opacity-90 font-bold tracking-[0.2em] uppercase">ClubRecruit</span>
+                <span className="text-[10px] opacity-90 font-bold tracking-[0.2em] uppercase">日本のエンジニア</span>
               </div>
             </div>
             
@@ -113,25 +112,25 @@ const App: React.FC = () => {
           <div className="absolute inset-0 bg-brand-900/10 mix-blend-overlay"></div>
         </div>
 
-        {/* Carousel Indicators */}
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {/* Carousel Indicators
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-2 mb-5">
           {HERO_IMAGES.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentHeroIndex(idx)}
               className={`w-12 h-1 rounded-full transition-all duration-300 ${
-                idx === currentHeroIndex ? 'bg-brand-500' : 'bg-white/30 hover:bg-white/50'
+          idx === currentHeroIndex ? 'bg-brand-500' : 'bg-white/30 hover:bg-white/50'
               }`}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 w-full flex flex-col md:flex-row items-center pt-20">
           <div className="md:w-3/5 text-center md:text-left space-y-8 animate-fade-up">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600/20 backdrop-blur-md border border-brand-500/30 text-white text-sm font-bold shadow-lg ring-1 ring-brand-500/50">
               <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse shadow-[0_0_10px_#f43f5e]"></span>
-              Tuyển thành viên Gen 10
+              Tuyển thành viên Gen 14
             </div>
             
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-[0.85] tracking-tighter drop-shadow-2xl">
@@ -168,7 +167,7 @@ const App: React.FC = () => {
       </section>
 
       {/* Stats Bar */}
-      <div className="bg-white border-b border-gray-100 relative z-20 -mt-8 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+      <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 relative z-20 -mt-8 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
         {[
           { icon: Calendar, label: "Thành lập", value: "2014" },
           { icon: Users, label: "Thành viên", value: "500+" },
@@ -176,10 +175,10 @@ const App: React.FC = () => {
           { icon: Award, label: "Giải thưởng", value: "50+" },
         ].map((stat, idx) => (
           <div key={idx} className="flex flex-col items-center justify-center text-center group">
-            <div className="w-12 h-12 bg-brand-50 rounded-full flex items-center justify-center text-brand-600 mb-3 group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 bg-gradient-to-br from-brand-50 to-brand-100 rounded-full flex items-center justify-center text-brand-600 mb-3 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-brand-500/30 transition-all">
               <stat.icon className="w-6 h-6" />
             </div>
-            <span className="text-3xl font-black text-gray-900">{stat.value}</span>
+            <span className="text-3xl font-black text-gray-900 group-hover:text-brand-600 transition-colors">{stat.value}</span>
             <span className="text-sm text-gray-500 uppercase font-bold tracking-wide mt-1">{stat.label}</span>
           </div>
         ))}
@@ -275,7 +274,7 @@ const App: React.FC = () => {
               </p>
               <div className="inline-flex items-center gap-2 text-white/80 bg-brand-700/50 px-4 py-2 rounded-lg backdrop-blur-sm">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                Đang mở đơn tuyển thành viên Gen 10
+                Đang mở đơn tuyển thành viên Gen 14
               </div>
             </div>
 
@@ -312,7 +311,7 @@ const App: React.FC = () => {
                  <li><a href="#" className="hover:text-brand-600 transition-colors">Trang chủ</a></li>
                  <li><a href="#about" className="hover:text-brand-600 transition-colors">Giới thiệu</a></li>
                  <li><a href="#departments" className="hover:text-brand-600 transition-colors">Cơ cấu tổ chức</a></li>
-                 <li><a href="#apply" className="hover:text-brand-600 transition-colors">Tuyển dụng</a></li>
+                 <li><a href="#apply" className="hover:text-brand-600 transition-colors">Ứng tuyển</a></li>
                </ul>
             </div>
 
@@ -325,7 +324,7 @@ const App: React.FC = () => {
                  </li>
                  <li className="flex items-start gap-2">
                     <MapPin className="w-4 h-4 text-brand-600 mt-1" />
-                    Đại học Công Nghệ - ĐHQGHN
+                    Hoa Lac Hi-tech Park, km 29, Đại lộ, Thăng Long, Hà Nội
                  </li>
                </ul>
             </div>
@@ -343,7 +342,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>&copy; 2024 JS-club. All rights reserved.</p>
+            <p>&copy; 2025 JS-club. All rights reserved.</p>
             <div className="flex items-center gap-1 mt-2 md:mt-0">
                Made with <span className="text-brand-600">♥</span> and <Code2 className="w-4 h-4 text-brand-600" />
             </div>
