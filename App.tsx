@@ -3,15 +3,16 @@ import { CLUB_INFO, DEPARTMENTS } from './constants';
 import DepartmentCard from './components/DepartmentCard';
 import DepartmentModal from './components/DepartmentModal';
 import AiChat from './components/AiChat';
+import Reveal from './components/Reveal';
 import { Department } from './types';
 import { ChevronRight, Facebook, Instagram, Mail, MapPin, Code2, Flower2, Calendar, Users, Award, ChevronDown } from 'lucide-react';
 
 const JsClubLogo = () => (
-  <div className="w-16 h-16 md:w-15 md:h-15 rounded-full from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
+  <div className="w-20 h-20 md:w-15 md:h-15 from-brand-600 to-brand-700 flex items-center justify-center shadow-brand-500/30 overflow-hidden">
     <img
       src="/logo/logo.png"
       alt="JS-Club Logo"
-      className="w-full h-full object-cover rounded-full"
+      className="w-full h-full object-cover"
     />
   </div>
 );
@@ -166,124 +167,141 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 relative z-20 -mt-8 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-        {[
-          { icon: Calendar, label: "Thành lập", value: "2014" },
-          { icon: Users, label: "Thành viên", value: "500+" },
-          { icon: Code2, label: "Dự án", value: "100+" },
-          { icon: Award, label: "Giải thưởng", value: "50+" },
-        ].map((stat, idx) => (
-          <div key={idx} className="flex flex-col items-center justify-center text-center group">
-            <div className="w-12 h-12 bg-gradient-to-br from-brand-50 to-brand-100 rounded-full flex items-center justify-center text-brand-600 mb-3 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-brand-500/30 transition-all">
-              <stat.icon className="w-6 h-6" />
-            </div>
-            <span className="text-3xl font-black text-gray-900 group-hover:text-brand-600 transition-colors">{stat.value}</span>
-            <span className="text-sm text-gray-500 uppercase font-bold tracking-wide mt-1">{stat.label}</span>
-          </div>
-        ))}
-      </div>
+      {/* Stats Bar với Stagger Animation */}
+      <Reveal>
+        <div className="bg-white border border-gray-200 relative z-20 -mt-8 mx-4 md:mx-auto max-w-6xl rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+          {[
+            { icon: Calendar, label: "Thành lập", value: "2014" },
+            { icon: Users, label: "Thành viên", value: "500+" },
+            { icon: Code2, label: "Dự án", value: "100+" },
+            { icon: Award, label: "Giải thưởng", value: "50+" },
+          ].map((stat, idx) => (
+            <Reveal key={idx} delay={idx * 100} direction="up">
+              <div className="flex flex-col items-center justify-center text-center group">
+                <div className="w-12 h-12 bg-gradient-to-br from-brand-50 to-brand-100 rounded-full flex items-center justify-center text-brand-600 mb-3 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-brand-500/30 transition-all">
+                  <stat.icon className="w-6 h-6" />
+                </div>
+                <span className="text-3xl font-black text-gray-900 group-hover:text-brand-600 transition-colors">{stat.value}</span>
+                <span className="text-sm text-gray-500 uppercase font-bold tracking-wide mt-1">{stat.label}</span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Reveal>
 
-      {/* About Section with Tech Grid Background */}
+      {/* About Section với Animation */}
       <section id="about" className="py-24 relative overflow-hidden tech-grid-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-brand-600 font-bold tracking-widest text-sm uppercase block mb-3">Về chúng tôi</span>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              Tinh thần Samurai <br/> trong kỷ nguyên số
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              {CLUB_INFO.history} Chúng tôi không chỉ dạy code, chúng tôi rèn luyện tư duy và thái độ làm việc chuyên nghiệp chuẩn Nhật Bản.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-brand-100 rounded-3xl transform -rotate-3"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
-                alt="Team working" 
-                className="relative rounded-2xl shadow-2xl w-full"
-              />
-            </div>
-            
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                <span className="w-8 h-8 rounded bg-brand-600 text-white flex items-center justify-center text-sm">01</span>
-                Giá trị cốt lõi
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {CLUB_INFO.values.map((val, idx) => (
-                  <div key={idx} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-md transition-all flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-brand-500"></div>
-                    <span className="font-bold text-gray-800">{val}</span>
-                  </div>
-                ))}
-              </div>
-              <p className="text-gray-600 italic border-l-4 border-brand-200 pl-4 py-2">
-                "{CLUB_INFO.slogan}"
+          <Reveal>
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <span className="text-brand-600 font-bold tracking-widest text-sm uppercase block mb-3">Về chúng tôi</span>
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
+                Tinh thần Samurai <br/> trong kỷ nguyên số
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                {CLUB_INFO.history} Chúng tôi không chỉ dạy code, chúng tôi rèn luyện tư duy và thái độ làm việc chuyên nghiệp chuẩn Nhật Bản.
               </p>
             </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <Reveal delay={200} direction="left">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-brand-100 rounded-3xl transform -rotate-3"></div>
+                <img 
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+                  alt="Team working" 
+                  className="relative rounded-2xl shadow-2xl w-full"
+                />
+              </div>
+            </Reveal>
+            
+            <Reveal delay={400} direction="right">
+              <div className="space-y-8">
+                <h3 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                  <span className="w-8 h-8 rounded bg-brand-600 text-white flex items-center justify-center text-sm">01</span>
+                  Giá trị cốt lõi
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {CLUB_INFO.values.map((val, idx) => (
+                    <Reveal key={idx} delay={500 + idx * 100}>
+                      <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:border-brand-200 hover:shadow-md transition-all flex items-center gap-3">
+                        <div className="w-2 h-2 rounded-full bg-brand-500"></div>
+                        <span className="font-bold text-gray-800">{val}</span>
+                      </div>
+                    </Reveal>
+                  ))}
+                </div>
+                <p className="text-gray-600 italic border-l-4 border-brand-200 pl-4 py-2">
+                  "{CLUB_INFO.slogan}"
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Departments Section */}
+      {/* Departments Section với Stagger Animation */}
       <section id="departments" className="py-24 bg-gray-900 text-white relative">
         <div className="absolute inset-0 bg-[radial-gradient(#e11d48_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.05]"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-black mb-4">
-                Cơ cấu <span className="text-brand-500">Tổ chức</span>
-              </h2>
-              <div className="h-1 w-24 bg-brand-600 rounded-full"></div>
+          <Reveal>
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black mb-4">
+                  Cơ cấu <span className="text-brand-500">Tổ chức</span>
+                </h2>
+                <div className="h-1 w-24 bg-brand-600 rounded-full"></div>
+              </div>
+              <p className="text-gray-400 max-w-lg text-right md:text-lg">
+                Đa dạng vị trí, thống nhất mục tiêu. Tìm vị trí phù hợp nhất với tài năng của bạn.
+              </p>
             </div>
-            <p className="text-gray-400 max-w-lg text-right md:text-lg">
-              Đa dạng vị trí, thống nhất mục tiêu. Tìm vị trí phù hợp nhất với tài năng của bạn.
-            </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {DEPARTMENTS.map((dept) => (
-              <DepartmentCard 
-                key={dept.id} 
-                dept={dept} 
-                onClick={setSelectedDept} 
-              />
+            {DEPARTMENTS.map((dept, idx) => (
+              <Reveal key={dept.id} delay={idx * 150} direction="up">
+                <DepartmentCard 
+                  dept={dept} 
+                  onClick={setSelectedDept} 
+                />
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section với Animation */}
       <section id="apply" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-brand-600 rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden shadow-2xl text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-10">
-            {/* Background Pattern */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-black opacity-10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
-            
-            <div className="relative z-10 max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
-                Sẵn sàng trở thành <br/> một phần của <span className="text-brand-200">huyền thoại?</span>
-              </h2>
-              <p className="text-brand-100 text-lg mb-8 font-medium">
-                Đừng bỏ lỡ cơ hội phát triển bản thân và kết nối với mạng lưới cựu thành viên thành đạt trên khắp thế giới.
-              </p>
-              <div className="inline-flex items-center gap-2 text-white/80 bg-brand-700/50 px-4 py-2 rounded-lg backdrop-blur-sm">
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                Đang mở đơn tuyển thành viên Gen 14
+          <Reveal>
+            <div className="bg-brand-600 rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden shadow-2xl text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-10">
+              {/* Background Pattern */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-black opacity-10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+              
+              <div className="relative z-10 max-w-2xl">
+                <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                  Sẵn sàng trở thành <br/> một phần của <span className="text-brand-200">huyền thoại?</span>
+                </h2>
+                <p className="text-brand-100 text-lg mb-8 font-medium">
+                  Đừng bỏ lỡ cơ hội phát triển bản thân và kết nối với mạng lưới cựu thành viên thành đạt trên khắp thế giới.
+                </p>
+                <div className="inline-flex items-center gap-2 text-white/80 bg-brand-700/50 px-4 py-2 rounded-lg backdrop-blur-sm">
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                  Đang mở đơn tuyển thành viên Gen 14
+                </div>
+              </div>
+
+              <div className="relative z-10 shrink-0">
+                <button className="bg-white text-brand-700 font-black text-xl px-10 py-5 rounded-2xl shadow-xl hover:shadow-2xl hover:bg-gray-50 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
+                  Ứng tuyển ngay <ChevronRight className="w-6 h-6" />
+                </button>
               </div>
             </div>
-
-            <div className="relative z-10 shrink-0">
-               <button className="bg-white text-brand-700 font-black text-xl px-10 py-5 rounded-2xl shadow-xl hover:shadow-2xl hover:bg-gray-50 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
-                 Ứng tuyển ngay <ChevronRight className="w-6 h-6" />
-               </button>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
