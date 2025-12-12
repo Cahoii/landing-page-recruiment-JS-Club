@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Department } from '../types';
-import { X, CheckCircle, Target, Briefcase, Zap, ArrowRight } from 'lucide-react';
+import { X, TestTubes, Atom, ScanSearch, FileText, FlaskConical } from 'lucide-react';
 
 interface DepartmentModalProps {
   dept: Department | null;
@@ -8,104 +8,140 @@ interface DepartmentModalProps {
 }
 
 const DepartmentModal: React.FC<DepartmentModalProps> = ({ dept, onClose }) => {
+  
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (dept) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    // Cleanup
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [dept]);
+
   if (!dept) return null;
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm animate-in fade-in duration-300"
+        className="absolute inset-0 bg-slate-950/90 backdrop-blur-sm animate-in fade-in duration-300"
         onClick={onClose}
       />
 
-      {/* Modal Content */}
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-300 flex flex-col md:flex-row overflow-hidden">
+      {/* Modal Container */}
+      <div className="relative w-full max-w-5xl h-[85vh] bg-lab-bg border border-brand-500/30 rounded-none shadow-[0_0_50px_rgba(6,182,212,0.15)] flex flex-col md:flex-row overflow-hidden animate-in zoom-in-95 duration-300">
         
-        {/* Close Button Mobile */}
+        {/* Decorative Grid Lines */}
+        <div className="absolute inset-0 pointer-events-none z-0 opacity-20" 
+             style={{ backgroundImage: 'linear-gradient(#06b6d4 1px, transparent 1px), linear-gradient(90deg, #06b6d4 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+        </div>
+
+        {/* Close Button */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 bg-black/20 text-white rounded-full md:hidden"
+          className="absolute top-4 right-4 z-50 p-2 text-brand-400 hover:text-white hover:bg-brand-500/20 transition-all border border-transparent hover:border-brand-500"
         >
           <X className="w-6 h-6" />
         </button>
 
-        {/* Left Side: Image & Title */}
-        <div className="w-full md:w-5/12 relative min-h-[250px] md:min-h-full">
-          <img 
-            src={dept.imageUrl} 
-            alt={dept.name} 
-            className="w-full h-full object-cover absolute inset-0"
-          />
-          <div className="absolute inset-0 bg-brand-900/40 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-transparent to-transparent opacity-90" />
-          
-          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-            <span className="inline-block px-3 py-1 bg-brand-500/20 backdrop-blur border border-brand-400/30 rounded-full text-xs font-bold uppercase tracking-widest mb-3 text-brand-100">
-              Department
-            </span>
-            <h2 className="text-4xl font-black mb-2 leading-tight">{dept.name}</h2>
-            <div className="w-16 h-1.5 bg-brand-500 rounded-full"></div>
+        {/* Left: Element Visualization */}
+        <div className="w-full md:w-5/12 relative bg-slate-900 border-r border-brand-500/30 flex flex-col">
+          <div className="h-1/2 md:h-2/3 relative overflow-hidden group">
+            <img 
+              src={dept.imageUrl} 
+              alt={dept.name} 
+              className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500 grayscale hover:grayscale-0"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+            
+            {/* Big Symbol Overlay */}
+            <div className="absolute bottom-4 left-6">
+               <h1 className="text-9xl font-mono font-black text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-transparent leading-none select-none">
+                 {dept.symbol}
+               </h1>
+            </div>
+          </div>
+
+          <div className="flex-1 p-6 md:p-8 flex flex-col justify-end font-mono">
+            <div className="mb-2 text-brand-400 text-sm tracking-widest uppercase">Nguyên tố</div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">{dept.elementName}</h2>
+            <div className="text-slate-400 text-sm">{dept.name}</div>
+            <div className="mt-4 flex gap-4 text-xs text-brand-300/70 border-t border-slate-800 pt-4">
+              <div>
+                <span className="block opacity-50">Atomic No.</span>
+                <span className="text-lg">{dept.atomicNumber}</span>
+              </div>
+              <div>
+                <span className="block opacity-50">Atomic Mass</span>
+                <span className="text-lg">{dept.atomicMass}</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right Side: Info */}
-        <div className="w-full md:w-7/12 p-8 md:p-10 relative bg-white">
-          <button 
-            onClick={onClose}
-            className="absolute top-6 right-6 hidden md:flex p-2 text-gray-400 hover:text-brand-600 hover:bg-brand-50 rounded-full transition-all"
-          >
-            <X className="w-6 h-6" />
-          </button>
-
-          <div className="mb-8">
-            <p className="text-xl text-gray-600 italic font-medium leading-relaxed">
-              "{dept.description}"
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {/* Nhiệm vụ */}
+        {/* Right: Data Analysis */}
+        <div className="w-full md:w-7/12 relative overflow-y-auto custom-scrollbar bg-slate-950/50">
+          <div className="p-8 md:p-12 space-y-8">
+            
+            {/* Description Section */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-brand-100 rounded-lg text-brand-600">
-                  <Briefcase className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide">Mô tả công việc</h3>
+              <div className="flex items-center gap-2 mb-4 text-brand-400 font-mono text-sm tracking-widest border-b border-brand-500/20 pb-2">
+                <FlaskConical className="w-4 h-4" />
+                PHÂN TÍCH ĐỊNH TÍNH
+              </div>
+              <p className="text-lg text-slate-300 leading-relaxed font-light italic">
+                "{dept.description}"
+              </p>
+              <p className="mt-4 text-slate-400 text-sm leading-relaxed">
+                {dept.roleDescription}
+              </p>
+            </div>
+
+            {/* Tasks Section */}
+            <div>
+              <div className="flex items-center gap-2 mb-4 text-brand-400 font-mono text-sm tracking-widest border-b border-brand-500/20 pb-2">
+                <TestTubes className="w-4 h-4" />
+                PHẢN ỨNG THỰC NGHIỆM (TASKS)
               </div>
               <ul className="grid gap-3">
                 {dept.tasks.map((task, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-gray-700 bg-gray-50 p-3 rounded-xl border border-gray-100 group hover:border-brand-200 transition-colors">
-                    <Target className="w-5 h-5 text-brand-500 mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
-                    <span className="text-sm font-medium">{task}</span>
+                  <li key={idx} className="flex items-start gap-3 text-slate-300 group">
+                    <span className="mt-1.5 w-1.5 h-1.5 bg-brand-500 rounded-full shadow-[0_0_5px_#06b6d4]"></span>
+                    <span className="text-sm md:text-base group-hover:text-brand-200 transition-colors">{task}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Yêu cầu */}
+            {/* Requirements Section */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-gray-100 rounded-lg text-gray-700">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide">Yêu cầu ứng viên</h3>
+              <div className="flex items-center gap-2 mb-4 text-brand-400 font-mono text-sm tracking-widest border-b border-brand-500/20 pb-2">
+                <ScanSearch className="w-4 h-4" />
+                ĐIỀU KIỆN KÍCH HOẠT (REQUIREMENTS)
               </div>
-              <div className="space-y-3">
+              <ul className="space-y-3">
                 {dept.requirements.map((req, idx) => (
-                  <div key={idx} className="flex items-center gap-3 text-gray-700 border-b border-gray-100 last:border-0 pb-2 last:pb-0">
-                    <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
-                    <span className="text-sm">{req}</span>
-                  </div>
+                  <li key={idx} className="bg-slate-900/50 border border-slate-800 p-3 flex items-center gap-3 hover:border-brand-500/50 transition-colors">
+                    <Atom className="w-5 h-5 text-brand-500" />
+                    <span className="text-sm text-slate-300">{req}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
-          </div>
 
-          <div className="mt-10 flex justify-end">
-             <button className="w-full md:w-auto bg-brand-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-700 transition-all shadow-lg shadow-brand-200 transform hover:-translate-y-1 flex items-center justify-center gap-2">
-               <span>Ứng tuyển ngay</span>
-               <ArrowRight className="w-5 h-5" />
-             </button>
+            {/* Apply Action */}
+            <div className="pt-8">
+              <button className="w-full bg-brand-600 hover:bg-brand-500 text-white font-mono font-bold py-4 px-6 uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] flex items-center justify-center gap-3 group">
+                <FileText className="w-5 h-5" />
+                Mở rương XPRIMIV - Nộp đơn ngay
+                <span className="w-2 h-2 bg-white rounded-full ml-2 animate-pulse"></span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
